@@ -38,5 +38,25 @@ namespace WeatherAPI
 
             return cr;
         }
+
+        public AutocompleteResponse GetAutocompleteResponse(string query)
+        {
+            string url = "autocomplete.wunderground.com/aq?query=" + query;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            WebResponse response = request.GetResponseAsync().Result;
+
+            string json;
+
+            using (Stream responseStream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(responseStream))
+            {
+                json = reader.ReadToEnd();
+            }
+
+            AutocompleteResponse cr = JsonConvert.DeserializeObject<AutocompleteResponse>(json);
+
+            return cr;
+        }
     }
 }
