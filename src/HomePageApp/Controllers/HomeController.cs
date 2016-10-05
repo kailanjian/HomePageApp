@@ -106,8 +106,10 @@ namespace HomePageApp.Controllers
 
         public IActionResult GetLocation()
         {
+            ViewData["ShowBackground"] = true;
+
             string currentText = "";
-            if ((string)Request.Form["locationValue"] != null)
+            if (Request.Method == "POST" && (string)Request.Form["locationValue"] != null)
                 currentText = Request.Form["text-input"];
             Console.WriteLine(currentText);
 
