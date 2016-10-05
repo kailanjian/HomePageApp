@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section BodyProperties{
+    onload="updateClock(); setInterval('updateClock()',1000)"
+}
+
+<div id="middle" class="text">
+    
+    <p id="clock">0:00</p>
+
+    <h1 id ="welcome" class="title">@ViewData["Greeting"]</h1>
+    <br />
+
+</div>
+
+<div id="top-right" class="text">
+    <i id="weather-icon" class="wi @ViewData["WeatherIconName"]"></i>
+    <span id="temperature">@ViewData["TemperatureF"]° F</span>
+</div>
+<!--<div class="text">
+    <i style="font-size: xx-large;" class="glyphicon glyphicon-calendar"></i>
+    <h2>Today is @ViewData["Date"] </h2>
+    <br />
+</div>-->
+<!-- how to do a link<a asp-area="" asp-controller="Home" asp-action="About">About Us</a>-->

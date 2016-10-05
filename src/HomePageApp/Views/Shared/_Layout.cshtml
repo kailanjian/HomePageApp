@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HomePageApp</title>
+    @{ 
+        // Create and populate the image url with the Bing API
+        string imageUrl = "";
+        if (ViewData["ShowBackground"] != null && (bool)ViewData["ShowBackground"] == true)
+        {
+            BingImageAPI.BingImageClient client = new BingImageAPI.BingImageClient();
+            string imageUrlPart = client.GetImageResponse().images[0].url;
+            imageUrl = "http://www.bing.com" + imageUrlPart;
+        }
+    }
+
+    @if (ViewData["ShowBackground"] != null && (bool)ViewData["ShowBackground"] == true)
+    {
+        <style>
+            body 
+                { 
+                    background-image: url("@imageUrl");
+                    background-repeat: no-repeat;
+                    background-size: inherit;
+                    height: 100%;
+                    text-shadow: 2px 2px 5px #000000;
+                };
+        </style>
+    }
+    <link rel="stylesheet" href="~/css/weather-icons-wind.css" />
+    <link rel="stylesheet" href="~/css/weather-icons.css" />
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    <script type="text/javascript">
+        <!--
+
+        function updateClock ( )
+        {
+            var currentTime = new Date();
+
+            var currentHours = currentTime.getHours();
+            var currentMinutes = currentTime.getMinutes();
+
+            // Pad the minutes and seconds with leading zeros, if required
+            currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+
+            // Convert the hours component to 12-hour format if needed
+            currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+
+            // Convert an hours component of "0" to "12"
+            currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+
+            // Compose the string for display
+            var currentTimeString = currentHours + ":" + currentMinutes;
+
+            // Update the time display
+            document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+        }
+
+        // -->
+    </script>
+
+    @RenderSection("HeaderItems",false)
+</head>
+<body @RenderSection("BodyProperties",false)>
+    @RenderBody()
+    <!--
+    <hr />
+    <footer>
+        <p>&copy; 2016 - HomePage <a asp-area="" asp-controller="Home" asp-action="About">About Us</a></p>
+    </footer>
+    -->
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Location?";
+}
+
+@section HeaderItems{
+    <link rel="stylesheet" href="~/css/get-location.css" />
+}
+
+<div id="form-container">
+<h1 id="location-query" class="text">Where Are You Located?</h1>
+    <form asp-action="SubmitLocation" asp-controller="Home">
+        <input size="90" type="text" id="location-input" name="locationValue" autofocus />
+        <br />
+        <input type="submit" id="location-submit" value="Submit" />
+    </form>
+</div>
