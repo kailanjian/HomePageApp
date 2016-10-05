@@ -52,7 +52,7 @@ namespace WeatherAPI
         {
             // Based on this page:
             // https://www.wunderground.com/weather/api/d/docs?d=autocomplete-api&MR=1
-            string url = "autocomplete.wunderground.com/aq?query=" + query;
+            string url = "http://autocomplete.wunderground.com/aq?query=" + query;
 
             // Get request
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);

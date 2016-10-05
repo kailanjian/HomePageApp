@@ -8,9 +8,32 @@
 
 <div id="form-container">
 <h1 id="location-query" class="text">Where Are You Located?</h1>
-    <form asp-action="SubmitLocation" asp-controller="Home">
+    <form asp-action=GetLocation asp-controller="Home">
         <input size="90" type="text" id="location-input" name="locationValue" autofocus />
         <br />
-        <input type="submit" id="location-submit" value="Submit" />
+        @if (ViewData["cities"] != null)
+        {
+            int resultsToShow = (int) ViewData["NumResults"];
+            @foreach (string city in ((string)ViewData["cities"]).Split(';'))
+            {
+                if (resultsToShow == 0)
+                {
+                    break;
+                }
+
+                string cityName = city.Split('@')[0];
+                string cityLink = city.Split('@')[1];
+                <label class="city-radio-button-label">
+                    <input type="radio" name="city" class="city-radio-button" value="@cityLink"/>
+                    @cityName
+                </label>
+                <br />
+
+                resultsToShow--;
+                
+            }
+        }
+       
+        <input type="submit" id="location-submit" value="Search" />
     </form>
 </div>

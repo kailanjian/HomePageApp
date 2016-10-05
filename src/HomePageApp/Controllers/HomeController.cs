@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using WeatherAPI;
+using System.Text;
 
 namespace HomePageApp.Controllers
 {
@@ -104,16 +105,46 @@ namespace HomePageApp.Controllers
             return View();
         }
 
-        public IActionResult GetLocation()
+        public IActionResult GetLocation(string locationValue)
         {
             ViewData["ShowBackground"] = true;
+            // TODO: put 5 as a constant somewhere
+            ViewData["NumResults"] = 5;
+            
+            if (Request.Method == "POST")
+            {
+                WeatherClient client = new WeatherClient();
+                AutocompleteResponse response = client.GetAutocompleteResponse(locationValue);
 
-            string currentText = "";
-            if (Request.Method == "POST" && (string)Request.Form["locationValue"] != null)
-                currentText = Request.Form["text-input"];
-            Console.WriteLine(currentText);
+                StringBuilder cities = new StringBuilder();
+                foreach (var item in response.RESULTS)
+                {
+                    // Filter out cities
+                    if (item.type == "city")
+                    {
+                        // Append the data in serialized form
+                        // cityname1@link1;cityname2@link2;cityname3@link3
+                        // and so on
+                        cities.Append(item.name);
+                        cities.Append("@");
+                        cities.Append(item.zmw);
+                        cities.Append(";");
+                    }
+                }
+
+                // Remove the last semicolon at the end 
+                cities.Remove(cities.Length - 1, 1);
+                ViewData["cities"] = cities.ToString();
+            }
+
 
             return View();
+        }
+
+        public IActionResult SubmitLocationQuery(string locationValue)
+        {
+
+            return RedirectToAction("");
         }
 
         public IActionResult SubmitName(string nameValue)
