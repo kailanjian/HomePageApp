@@ -7,33 +7,42 @@
 }
 
 <div id="form-container">
-<h1 id="location-query" class="text">Where Are You Located?</h1>
+    @if (ViewData["cities"] == null)
+    {
+    <h1 id="location-query" class="text">Please enter your city of residence (for weather data).</h1>
     <form asp-action=GetLocation asp-controller="Home">
         <input size="90" type="text" id="location-input" name="locationValue" autofocus />
         <br />
+       
+        <input type="submit" id="location-submit" value="Submit" />
+    </form>
+    }
+    else
+    {
+    <h1 id="location-query" class="text">Specify your city</h1>
+    <form asp-action=SubmitLocation asp-controller="Home">
         @if (ViewData["cities"] != null)
         {
-            int resultsToShow = (int) ViewData["NumResults"];
+            int resultsToShow = (int)ViewData["NumResults"];
+            int current = 0;
             @foreach (string city in ((string)ViewData["cities"]).Split(';'))
             {
-                if (resultsToShow == 0)
+                if (current == resultsToShow)
                 {
                     break;
                 }
 
                 string cityName = city.Split('@')[0];
                 string cityLink = city.Split('@')[1];
-                <label class="city-radio-button-label">
-                    <input type="radio" name="city" class="city-radio-button" value="@cityLink"/>
-                    @cityName
-                </label>
+                <input type="radio" name="cityLink" id="radio-@current" class="city-radio-button" value="@cityLink"/>
+                <label class="city-radio-button-label" for="radio-@current">@cityName</label>
                 <br />
 
-                resultsToShow--;
-                
+                current++;
+
             }
         }
-       
-        <input type="submit" id="location-submit" value="Search" />
+        <input type="submit" id="location-submit" value="Submit" />
     </form>
+    }
 </div>

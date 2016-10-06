@@ -127,7 +127,7 @@ namespace HomePageApp.Controllers
                         // and so on
                         cities.Append(item.name);
                         cities.Append("@");
-                        cities.Append(item.zmw);
+                        cities.Append(item.l);
                         cities.Append(";");
                     }
                 }
@@ -141,10 +141,10 @@ namespace HomePageApp.Controllers
             return View();
         }
 
-        public IActionResult SubmitLocationQuery(string locationValue)
+        public IActionResult SubmitLocation(string cityLink)
         {
-
-            return RedirectToAction("");
+            // TODO: save link as a cookie
+            return RedirectToAction("Index");
         }
 
         public IActionResult SubmitName(string nameValue)
