@@ -20,12 +20,13 @@ namespace WeatherAPI
         /// <summary>
         /// Gets data about the weather conditions (currently limited to San Diego)
         /// </summary>
+        /// <param name="locationLink">location link to append to query</param>
         /// <returns>Response with data about the weather</returns>
-        public ConditionsResponse GetConditionsResponse()
+        public ConditionsResponse GetConditionsResponse(string locationLink)
         {
             // Request URL based on Wunderground API documentation for getting 
             // city data based on API key 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"http://api.wunderground.com/api/{key}/conditions/q/CA/San_Diego.json");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"http://api.wunderground.com/api/{key}/conditions" + locationLink + ".json");
             WebResponse response = request.GetResponseAsync().Result;
 
             // Get JSON data from response

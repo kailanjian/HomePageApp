@@ -11,54 +11,51 @@ namespace HomePageApp.Controllers
 {
     public class HomeController : Controller
     {
+        private const string NAME_COOKIE = "name";
+        private const string LOCATION_COOKIE = "location_link";
+
+        // Number of results to show in the location page
+        private const int LOCATION_RESULTS = 5;
+
+        // Hours which describe the begginning of afternoon and evening
+        private const int AFTERNOON_LOWER_BOUND = 12;
+        private const int EVENING_LOWER_BOUND = 18;
+
         public IActionResult Index()
         {
             /*
-             * cookies
+             * Check for needed cookies
              */
-            string nameCookie = Request.Cookies["name"];
+            string nameCookie = Request.Cookies[NAME_COOKIE];
             if (nameCookie == null)
                 return RedirectToAction("GetName");
 
-            string locationCookie = Request.Cookies["location"];
+            string locationCookie = Request.Cookies[LOCATION_COOKIE];
             if (locationCookie == null)
                 return RedirectToAction("GetLocation");
 
             /*
-             * background image setup
+             * Background Image Setup
              */
 
+            // Once this is toggled, the cshtml layout will handle
+            // the styling.
             ViewData["ShowBackground"] = true;
-/*
-            // create the image url using the api
-            BingImageAPI.BingImageClient client = new BingImageAPI.BingImageClient();
-            string imageUrlPart = client.GetImageResponse().images[0].url;
-            string imageUrl = "http://www.bing.com" + imageUrlPart;
 
-            // integrate the background image into the style
-            ViewData["ExtraStyle"] =
-                @"body 
-                    { 
-                        background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(""" + imageUrl + @""");
-                        background-repeat: no-repeat;
-                        background-size: inherit;
-                        height: 100%;
-                        text-shadow: 2px 2px 5px #000000;
-                    }";
-
-        */
             /* 
-             * create the greeting
+             * Create the Greeting
              */
 
-            // TODO: name should be loaded via cookie
+            // Copy nameCookie into name
+            // nameCookie may be changed into a different data source
+            // in the future
             string name = nameCookie;
 
             // time based greeting
             string greeting = "Good Morning";
-            if (DateTime.Now.Hour >= 12)
+            if (DateTime.Now.Hour >= AFTERNOON_LOWER_BOUND)
                 greeting = "Good Afternoon";
-            if (DateTime.Now.Hour >= 18)
+            if (DateTime.Now.Hour >= EVENING_LOWER_BOUND)
                 greeting = "Good Evening";
 
             // create the greeting
@@ -66,19 +63,22 @@ namespace HomePageApp.Controllers
 
 
             /*
-             * date
+             * Store date
              */
 
             // date information to be used within page
             ViewData["Date"] = String.Format("{0:dddd, MMMM d, yyyy}", DateTime.Today);
 
             /*
-             * weather information
+             * Weather Information
              */
 
-            // get data from the api
+            // May change source in the future
+            string locationLink = locationCookie;
+
+            // Get data with API request
             WeatherClient wc = new WeatherClient();
-            ConditionsResponse cr = wc.GetConditionsResponse();
+            ConditionsResponse cr = wc.GetConditionsResponse(locationCookie);
 
             // temperature in fahrenheit, TODO: option for celsius
             ViewData["TemperatureF"] = cr.current_observation.feelslike_f;
@@ -102,6 +102,7 @@ namespace HomePageApp.Controllers
         public IActionResult GetName()
         {
             ViewData["ShowBackground"] = true;
+
             return View();
         }
 
@@ -144,6 +145,10 @@ namespace HomePageApp.Controllers
         public IActionResult SubmitLocation(string cityLink)
         {
             // TODO: save link as a cookie
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now.AddDays(1);
+            Response.Cookies.Append("location_link", cityLink, options);
+
             return RedirectToAction("Index");
         }
 
