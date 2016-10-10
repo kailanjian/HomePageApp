@@ -1,32 +1,39 @@
-﻿<!DOCTYPE html>
+﻿@using BingImageAPI
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>@ViewData["Title"] - HomePageApp</title>
+    
     @{ 
-        // Create and populate the image url with the Bing API
-        string imageUrl = "";
-        if (ViewData["ShowBackground"] != null && (bool)ViewData["ShowBackground"] == true)
+        // Enter statement if the page is requesting a background
+        if (ViewData["ShowBackground"] != null &&
+            (bool)ViewData["ShowBackground"] == true)
         {
-            BingImageAPI.BingImageClient client = new BingImageAPI.BingImageClient();
-            string imageUrlPart = client.GetImageResponse().images[0].url;
-            imageUrl = "http://www.bing.com" + imageUrlPart;
-        }
-    }
+            // Get the data for today's image from Bing
+            BingImageClient client = new BingImageClient();
+            ImageResponse response = client.GetImageResponse();
 
-    @if (ViewData["ShowBackground"] != null && (bool)ViewData["ShowBackground"] == true)
-    {
-        <style>
-            body 
+            // Get the copyright and store in "ImageCopyright" for page use
+            ViewData["ImageCopyright"] =
+                response.images[0].copyright;
+
+            // Get the image URL
+            string imageUrlPart = response.images[0].url;
+            string imageUrl = Constants.BING_URL_BASE + imageUrlPart;
+
+            // Implement a style setting the found url as the background
+            <style>
+                body 
                 { 
                     background-image: url("@imageUrl");
-                    background-repeat: no-repeat;
-                    background-size: inherit;
-                    height: 100%;
-                    text-shadow: 2px 2px 5px #000000;
-                };
-        </style>
+                }
+            </style>
+            <link rel="stylesheet" href="~/css/background-image.css" />
+        }
     }
     <link rel="stylesheet" href="~/css/weather-icons-wind.css" />
     <link rel="stylesheet" href="~/css/weather-icons.css" />
