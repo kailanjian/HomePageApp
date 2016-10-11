@@ -247,3 +247,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/src/HomePageApp/Properties/PublishProfiles/Raspberry Pi App.pubxml
+/src/HomePageApp/Properties/PublishProfiles/Raspberry Pi App-publish.ps1
+/src/HomePageApp/Properties/PublishProfiles/publish-module.psm1

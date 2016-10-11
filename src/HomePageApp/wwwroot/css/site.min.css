@@ -1,1 +1,84 @@
-body{padding-top:50px;padding-bottom:20px}.body-content{padding-left:15px;padding-right:15px}input,select,textarea{max-width:280px}.carousel-caption p{font-size:20px;line-height:1.4}.carousel-inner .item img[src$=".svg"]{width:100%}@media screen and (max-width:767px){.carousel-caption{display:none}}
+html {
+    /* set height so body can also be set*/
+    height: 100%;
+}
+
+body {
+    /* set min height so it can be adjusted */
+    min-height: 100%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    position: relative;
+    /*display: block;*/
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    /*padding-left: 15px;*/
+    /*padding-right: 15px;*/
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"]
+{
+    width: 100%;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+  /* Hide captions */
+  .carousel-caption {
+    display: none
+  }
+}
+
+#welcome {
+    font-size: 4em;
+
+}
+
+/* create the text block */
+.text {
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+    text-align: center;
+    color: white;
+    font-size: large;
+}
+
+#clock {
+    font-size:10em;
+    line-height:0.9em;
+}
+
+#middle {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    
+}
+
+#top-right {
+    position: absolute;
+    top:3%;
+    right: 3%;
+}
+
+#weather-icon {
+    font-size: 2em;
+}
+
+#temperature {
+    font-size: 2em;
+}
+
+#
