@@ -21,11 +21,13 @@ namespace HomePageApp.Controllers
         private const int AFTERNOON_LOWER_BOUND = 12;
         private const int EVENING_LOWER_BOUND = 18;
 
+        // How long to store cookies (in days)
+        // TODO: pick reasonable value for published version
+        private const int COOKIE_DAYS = 1;
+
         public IActionResult Index()
         {
-            /*
-             * Check for needed cookies
-             */
+            // Check for needed cookies
             string nameCookie = Request.Cookies[NAME_COOKIE];
             if (nameCookie == null)
                 return RedirectToAction("GetName");
@@ -34,17 +36,10 @@ namespace HomePageApp.Controllers
             if (locationCookie == null)
                 return RedirectToAction("GetLocation");
 
-            /*
-             * Background Image Setup
-             */
 
-            // Once this is toggled, the cshtml layout will handle
-            // the styling.
+            // Request a background image
             ViewData["ShowBackground"] = true;
 
-            /* 
-             * Create the Greeting
-             */
 
             // Copy nameCookie into name
             // nameCookie may be changed into a different data source
@@ -62,16 +57,13 @@ namespace HomePageApp.Controllers
             ViewData["Greeting"] = greeting + ", " + name;
 
 
-            /*
-             * Store date
-             */
 
             // date information to be used within page
-            ViewData["Date"] = String.Format("{0:dddd, MMMM d, yyyy}", DateTime.Today);
+            ViewData["Date"] = 
+                string.Format("{0:dddd, MMMM d, yyyy}", DateTime.Today);
 
-            /*
-             * Weather Information
-             */
+
+            // Get weather data based on location
 
             // May change source in the future
             string locationLink = locationCookie;
@@ -94,13 +86,15 @@ namespace HomePageApp.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Welcome to the Future";
+            // Message will be displayed on about page
+            ViewData["Message"] = "About this site";
 
             return View();
         }
 
         public IActionResult GetName()
         {
+            // Display the background
             ViewData["ShowBackground"] = true;
 
             return View();
@@ -108,15 +102,23 @@ namespace HomePageApp.Controllers
 
         public IActionResult GetLocation(string locationValue)
         {
+            // Display the background
             ViewData["ShowBackground"] = true;
-            // TODO: put 5 as a constant somewhere
-            ViewData["NumResults"] = 5;
+
+            // Limit number of options for location (user location is usually
+            // in the first three options
+            ViewData["NumResults"] = LOCATION_RESULTS;
             
+            // Check that we posted back a location to display options for
             if (Request.Method == "POST")
             {
+                // Call API
                 WeatherClient client = new WeatherClient();
-                AutocompleteResponse response = client.GetAutocompleteResponse(locationValue);
+                AutocompleteResponse response 
+                    = client.GetAutocompleteResponse(locationValue);
 
+                // Go through the results and build a cities string to pass
+                // in a serialized format
                 StringBuilder cities = new StringBuilder();
                 foreach (var item in response.RESULTS)
                 {
@@ -144,20 +146,24 @@ namespace HomePageApp.Controllers
 
         public IActionResult SubmitLocation(string cityLink)
         {
-            // TODO: save link as a cookie
+            // Create cookie to store the location link for later use
             CookieOptions options = new CookieOptions();
-            options.Expires = DateTime.Now.AddDays(1);
-            Response.Cookies.Append("location_link", cityLink, options);
+            options.Expires = DateTime.Now.AddDays(COOKIE_DAYS);
+            Response.Cookies.Append(LOCATION_COOKIE, cityLink, options);
 
+            // Now that we have the data, go to main page
             return RedirectToAction("Index");
         }
 
         public IActionResult SubmitName(string nameValue)
         {
+            // Create cookie to store the name for later use
             CookieOptions options = new CookieOptions();
-            options.Expires = DateTime.Now.AddDays(1);
-            Response.Cookies.Append("name", nameValue, options);
 
+            options.Expires = DateTime.Now.AddDays(COOKIE_DAYS);
+            Response.Cookies.Append(NAME_COOKIE, nameValue, options);
+
+            // The data is stored, go to main page
             return RedirectToAction("Index");
         }
 
