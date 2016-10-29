@@ -1,3 +1,5 @@
+Release branch contains the code which should be deployed. Master branch has minor differences that simply make it easier to debug.
+
 # HomePageApp
 
 To run this project, you will need a Wunderground API Key (https://www.wunderground.com/weather/api/).
