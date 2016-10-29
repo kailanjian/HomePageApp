@@ -31,14 +31,14 @@
 #location-submit {
     margin-top: 1em;
     border : solid 2px #ffffff;
-	border-radius : 3px;
-	-webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-	-moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-	box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-	font-size : 20px;
-	color : #ffffff;
-	padding : 1px 10px;
-	background-color : transparent;
+    border-radius : 3px;
+    -webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+    -moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+    box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+    font-size : 20px;
+    color : #ffffff;
+    padding : 1px 10px;
+    background-color : transparent;
 }
 
 .city-radio-button-label {
@@ -55,7 +55,7 @@ input[type=radio] + label::before {
     border: 2px solid white;
     border-radius: 50%;
     margin: 0 0.5em;
-	box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+    box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
 }
 input[type=radio]:checked + label::before {
     background-color: #000000;
