@@ -23,7 +23,7 @@ namespace HomePageApp.Controllers
 
         // How long to store cookies (in days)
         // TODO: pick reasonable value for published version
-        private const int COOKIE_DAYS = 1;
+        private const int COOKIE_DAYS = 30;
 
         public IActionResult Index()
         {
