@@ -3,14 +3,16 @@
 }
 
 @section BodyProperties{
-    onload="updateClock(); setInterval('updateClock()',1000)"
+    onload="updateClock(); setInterval('updateClock()',1000); updateGreeting('@ViewData["Name"]'); setInterval('updateGreeting()',3600000);"
 }
 
 <div id="middle" class="text">
     
-    <p id="clock">0:00</p>
+    <!-- This element must have content (currently just a space) to render 
+        properly-->
+    <p id="clock"> </p>
 
-    <h1 id ="welcome" class="title">@ViewData["Greeting"]</h1>
+    <h1 id ="welcome" class="title"> </h1>
     <br />
 
 </div>

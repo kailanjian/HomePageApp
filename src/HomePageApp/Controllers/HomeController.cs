@@ -46,6 +46,7 @@ namespace HomePageApp.Controllers
             // in the future
             string name = nameCookie;
 
+            // TODO: run this logic on the client side via javascript
             // time based greeting
             string greeting = "Good Morning";
             if (DateTime.Now.Hour >= AFTERNOON_LOWER_BOUND)
@@ -55,6 +56,7 @@ namespace HomePageApp.Controllers
 
             // create the greeting
             ViewData["Greeting"] = greeting + ", " + name;
+            ViewData["Name"] = name;
 
 
 
