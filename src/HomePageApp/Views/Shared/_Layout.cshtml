@@ -48,8 +48,8 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 
+    <!-- TODO: Move to a file -->
     <script type="text/javascript">
-        <!--
 
         function updateClock ( )
         {
@@ -71,10 +71,30 @@
             var currentTimeString = currentHours + ":" + currentMinutes;
 
             // Update the time display
-            document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+            document.getElementById("clock").firstChild.nodeValue 
+                = currentTimeString;
         }
 
-        // -->
+        function updateGreeting (name)
+        {
+            var currentTime = new Date();
+            var greeting = "Good Morning, ";
+            var currentHours = currentTime.getHours();
+            
+            // TODO: remove server side logic for this
+            if ( currentHours > (@Constants.AFTERNOON_LOWER_BOUND) ) {
+                greeting = "Good Afternoon, ";
+            }
+            if ( currentHours > (@Constants.EVENING_LOWER_BOUND)) {
+                greeting = "Good Evening, ";
+            }
+            
+            greeting += name;
+
+            document.getElementById("welcome").firstChild.nodeValue 
+                = greeting;
+        }
+      
     </script>
 
     @RenderSection("HeaderItems",false)
