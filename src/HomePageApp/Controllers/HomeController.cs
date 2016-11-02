@@ -46,16 +46,6 @@ namespace HomePageApp.Controllers
             // in the future
             string name = nameCookie;
 
-            // TODO: run this logic on the client side via javascript
-            // time based greeting
-            string greeting = "Good Morning";
-            if (DateTime.Now.Hour >= AFTERNOON_LOWER_BOUND)
-                greeting = "Good Afternoon";
-            if (DateTime.Now.Hour >= EVENING_LOWER_BOUND)
-                greeting = "Good Evening";
-
-            // create the greeting
-            ViewData["Greeting"] = greeting + ", " + name;
             ViewData["Name"] = name;
 
 
@@ -65,7 +55,7 @@ namespace HomePageApp.Controllers
                 string.Format("{0:dddd, MMMM d, yyyy}", DateTime.Today);
 
 
-            // Get weather data based on location
+            // Get weather data based on user location
 
             // May change source in the future
             string locationLink = locationCookie;
