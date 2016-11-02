@@ -6,7 +6,7 @@
     onload="updateClock(); setInterval('updateClock()',1000); updateGreeting('@ViewData["Name"]'); setInterval('updateGreeting()',3600000);"
 }
 
-<div id="middle" class="text">
+<div id="middle" class="heading">
     
     <!-- This element must have content (currently just a space) to render 
         properly-->
@@ -17,7 +17,7 @@
 
 </div>
 
-<div id="top-right" class="text">
+<div id="top-right" class="heading">
     <i id="weather-icon" class="wi @ViewData["WeatherIconName"]"></i>
     <span id="temperature">@ViewData["TemperatureF"]° F</span>
 </div>

@@ -1,6 +1,7 @@
-﻿body {
+﻿/* This file should be added whenever a background image is used */
+
+body {
     background-repeat: no-repeat;
     background-size: inherit;
     height: 100%;
-    text-shadow: 2px 2px 5px #000000;
 }
