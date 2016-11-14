@@ -128,7 +128,9 @@ namespace HomePageApp.Controllers
                 }
 
                 // Remove the last semicolon at the end 
-                cities.Remove(cities.Length - 1, 1);
+                if (cities.Length > 0)
+                    cities.Remove(cities.Length - 1, 1);
+
                 ViewData["cities"] = cities.ToString();
             }
 
