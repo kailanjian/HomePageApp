@@ -7,13 +7,19 @@
 }
 
 <div id="middle" class="heading">
-    
-    <!-- This element must have content (currently just a space) to render 
-        properly-->
-    <p id="clock"> </p>
+    <div id="clock-widget">
+        <!-- This element must have content (currently just a space) to render 
+            properly-->
+        <p id="clock"> </p>
 
-    <h1 id ="welcome" class="title"> </h1>
-    <br />
+        <h1 id ="welcome" class="title"> </h1>
+        <br />
+    </div>
+
+    <!--Make other panels here, will become visible when user wants to view-->
+    <div id="settings-widget" hidden>
+        <h1 id="settings-header" class="title">Settings</h1>
+    </div>
 
 </div>
 
