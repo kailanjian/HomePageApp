@@ -3,7 +3,9 @@
 }
 
 @section BodyProperties{
-    onload="updateClock(); setInterval('updateClock()',1000); updateGreeting('@ViewData["Name"]'); setInterval('updateGreeting()',3600000);"
+    onload="updateClock(); setInterval('updateClock()',1000); 
+    updateGreeting('@ViewData["Name"]'); 
+    setInterval('updateGreeting()',3600000);"
 }
 
 <div id="middle" class="heading">
@@ -44,4 +46,5 @@
     <h2>Today is @ViewData["Date"] </h2>
     <br />
 </div>-->
-<!-- how to do a link<a asp-area="" asp-controller="Home" asp-action="About">About Us</a>-->
+<!-- how to do a link<a asp-area="" asp-controller="Home" asp-action="About">
+    About Us</a>-->

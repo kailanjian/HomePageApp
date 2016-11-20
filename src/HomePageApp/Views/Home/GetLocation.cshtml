@@ -14,7 +14,8 @@
         </h1>
 
         <form asp-action=GetLocation asp-controller="Home">
-            <input size="90" type="text" id="location-input" name="locationValue" autofocus />
+            <input size="90" type="text" id="location-input" 
+                   name="locationValue" autofocus />
             <br />
            
             <input type="submit" id="location-submit" value="Submit" />
@@ -41,8 +42,11 @@
 
                 string cityName = city.Split('@')[0];
                 string cityLink = city.Split('@')[1];
-                <input type="radio" name="cityLink" id="radio-@current" class="city-radio-button" value="@cityLink"/>
-                <label class="city-radio-button-label" for="radio-@current">@cityName</label>
+                <input type="radio" name="cityLink" id="radio-@current" 
+                       class="city-radio-button" value="@cityLink"/>
+                <label class="city-radio-button-label" for="radio-@current">
+                    @cityName
+                </label>
                 <br />
 
                 current++;

@@ -1,4 +1,6 @@
-﻿html {
+﻿/* site wide stylesheet */
+
+html {
     /* set height so body can also be set*/
     height: 100%;
 }

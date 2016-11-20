@@ -67,11 +67,14 @@ namespace HomePageApp.Controllers
             // temperature in fahrenheit, TODO: option for celsius
             ViewData["TemperatureF"] = cr.current_observation.feelslike_f;
 
-            // icon mapping based on https://erikflowers.github.io/weather-icons/api-list.html
-            ViewData["WeatherIconName"] = "wi-wu-" + cr.current_observation.icon;
+            // icon mapping based on 
+            // https://erikflowers.github.io/weather-icons/api-list.html
+            ViewData["WeatherIconName"] = 
+                "wi-wu-" + cr.current_observation.icon;
 
             // precipitation data possibly needed in the future
-            //ViewData["Precipitation"] = cr.current_observation.precip_today_in;
+            // ViewData["Precipitation"] = 
+            //  cr.current_observation.precip_today_in;
 
             return View();
         }

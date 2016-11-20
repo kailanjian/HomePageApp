@@ -1,6 +1,4 @@
-﻿/* 
- *  format the page to display shadows and elements to contrast on picture
-*/
+﻿/*  format the page to display shadows and elements to contrast on picture */
 
 body {
     text-shadow: 2px 2px 5px #000000;
