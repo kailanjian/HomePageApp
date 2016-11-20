@@ -21,6 +21,18 @@
     <i id="weather-icon" class="wi @ViewData["WeatherIconName"]"></i>
     <span id="temperature">@ViewData["TemperatureF"]° F</span>
 </div>
+
+<div id="top-left" class="heading">
+    <!--Code for the search bar widget-->
+    <form asp-action=Search asp-controller="Widgets">
+        <div id="search-widget">
+            <i id="search-widget-icon" class="glyphicon glyphicon-search"></i>
+            <input size="10" type="text" 
+                   id="search-widget-input" name="query" />
+            <input type="submit" value="Submit" hidden="hidden" />
+        </div>
+    </form>
+</div>
 <!--<div class="text">
     <i style="font-size: xx-large;" class="glyphicon glyphicon-calendar"></i>
     <h2>Today is @ViewData["Date"] </h2>

@@ -69,8 +69,14 @@ body {
 
 #top-right {
     position: absolute;
-    top:3%;
-    right: 3%;
+    top: 1em;
+    right: 1em;
+}
+
+#top-left {
+    position: absolute;
+    top: 1em;
+    left: 1em;
 }
 
 #weather-icon {
@@ -81,4 +87,12 @@ body {
     font-size: 2em;
 }
 
-#
+
+#search-widget-icon {
+    padding-right: 0.5em;
+    font-size: 1em;
+}
+#search-widget-input {
+    text-align: left;
+    font-size: 1em;
+}
