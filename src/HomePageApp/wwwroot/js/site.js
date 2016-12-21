@@ -121,7 +121,7 @@ function settingWidgetClick ()
         $("#clock-widget").prop("hidden", true);
         $("#settings-widget").prop("hidden", false);
         //$("#settings-widget-icon").addClass("icon-active")
-        $("#settings-widget-icon").animate({ "font-size": "2em" }, 1000);
+        $("#settings-widget-icon").animate({ "font-size": "2em" }, 500);
         settingsWidgetEnabled = true;
     }
     else
@@ -129,7 +129,7 @@ function settingWidgetClick ()
         document.getElementById("clock-widget").hidden = false;
         document.getElementById("settings-widget").hidden = true;
         //document.getElementById("settings-widget-icon-active").id = "settings-widget-icon";
-        $("#settings-widget-icon").animate({ "font-size": "1em" }, 1000);
+        $("#settings-widget-icon").animate({ "font-size": "1em" }, 500);
         settingsWidgetEnabled = false;
     }
 }
