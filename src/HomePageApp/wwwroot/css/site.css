@@ -81,6 +81,12 @@ body {
     left: 1em;
 }
 
+#bottom-left {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+}
+
 #weather-icon {
     font-size: 2em;
 }
@@ -97,4 +103,60 @@ body {
 #search-widget-input {
     text-align: left;
     font-size: 1em;
+    opacity: 0;
+}
+
+#search-widget-input:focus {
+    opacity: 1 !important;
+}
+
+#search-widget {
+    text-align: left;
+}
+
+#search-widget-container {
+
+}
+
+#settings-widget-wrapper{
+    position:absolute;
+    left:50%;
+    top: 5%;
+    width:70%;
+    height: 100%;
+}
+
+#settings-widget {
+    background-color: rgba(0, 0, 0, 0.7);
+    position:relative;
+    left: -50%;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5%;
+    padding-left: 20%;
+    padding-right: 20%;
+    min-height: 90%;
+    text-align:center;
+}
+
+#settings-list {
+    list-style-type: none; 
+    text-align: left;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.setting-name {
+    display: inline-block;
+    width: 30%
+}
+
+.setting-option {
+    display: inline-block;
+    float: right;
+}
+
+.labeled-hidden-radio {
+    display: none;
 }

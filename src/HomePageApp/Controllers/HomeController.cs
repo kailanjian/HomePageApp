@@ -65,7 +65,8 @@ namespace HomePageApp.Controllers
             ConditionsResponse cr = wc.GetConditionsResponse(locationCookie);
 
             // temperature in fahrenheit, TODO: option for celsius
-            ViewData["TemperatureF"] = cr.current_observation.feelslike_f;
+            ViewData["TemperatureF"] = cr.current_observation.temp_f;
+            ViewData["TemperatureC"] = cr.current_observation.temp_c;
 
             // icon mapping based on 
             // https://erikflowers.github.io/weather-icons/api-list.html

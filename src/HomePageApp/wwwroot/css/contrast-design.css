@@ -2,7 +2,7 @@
 
 body {
     text-shadow: 2px 2px 5px #000000;
-    color: white;
+    color: white !important;
 }
 
 .heading {
@@ -47,11 +47,11 @@ input[type=submit] {
     color: white;
 }
 
-input[type=radio] {
+.city-radio-button {
     display: none;
 }
 
-input[type=radio] + label::before {
+.city-radio-button + .city-radio-button-label::before {
     content: '';
     display: inline-block;
     border: 2px solid white;
@@ -59,7 +59,7 @@ input[type=radio] + label::before {
     margin: 0 0.5em;
     box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
 }
-input[type=radio]:checked + label::before {
+.city-radio-button:checked + .city-radio-button-label::before {
     background-color: #000000;
 }
 
