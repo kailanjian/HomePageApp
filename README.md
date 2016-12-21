@@ -1,3 +1,5 @@
+Release branch contains the code which should be deployed. Master branch has minor differences that simply make it easier to debug.
+
 # HomePageApp
 
 Work in progress. If you like what you see and are interested in contributing, let me know. Alternatively, feel free to make a pull request.
