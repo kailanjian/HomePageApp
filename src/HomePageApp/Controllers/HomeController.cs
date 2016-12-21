@@ -46,16 +46,6 @@ namespace HomePageApp.Controllers
             // in the future
             string name = nameCookie;
 
-            // TODO: run this logic on the client side via javascript
-            // time based greeting
-            string greeting = "Good Morning";
-            if (DateTime.Now.Hour >= AFTERNOON_LOWER_BOUND)
-                greeting = "Good Afternoon";
-            if (DateTime.Now.Hour >= EVENING_LOWER_BOUND)
-                greeting = "Good Evening";
-
-            // create the greeting
-            ViewData["Greeting"] = greeting + ", " + name;
             ViewData["Name"] = name;
 
 
@@ -65,7 +55,7 @@ namespace HomePageApp.Controllers
                 string.Format("{0:dddd, MMMM d, yyyy}", DateTime.Today);
 
 
-            // Get weather data based on location
+            // Get weather data based on user location
 
             // May change source in the future
             string locationLink = locationCookie;
@@ -75,13 +65,17 @@ namespace HomePageApp.Controllers
             ConditionsResponse cr = wc.GetConditionsResponse(locationCookie);
 
             // temperature in fahrenheit, TODO: option for celsius
-            ViewData["TemperatureF"] = cr.current_observation.feelslike_f;
+            ViewData["TemperatureF"] = cr.current_observation.temp_f;
+            ViewData["TemperatureC"] = cr.current_observation.temp_c;
 
-            // icon mapping based on https://erikflowers.github.io/weather-icons/api-list.html
-            ViewData["WeatherIconName"] = "wi-wu-" + cr.current_observation.icon;
+            // icon mapping based on 
+            // https://erikflowers.github.io/weather-icons/api-list.html
+            ViewData["WeatherIconName"] = 
+                "wi-wu-" + cr.current_observation.icon;
 
             // precipitation data possibly needed in the future
-            //ViewData["Precipitation"] = cr.current_observation.precip_today_in;
+            // ViewData["Precipitation"] = 
+            //  cr.current_observation.precip_today_in;
 
             return View();
         }
@@ -138,7 +132,9 @@ namespace HomePageApp.Controllers
                 }
 
                 // Remove the last semicolon at the end 
-                cities.Remove(cities.Length - 1, 1);
+                if (cities.Length > 0)
+                    cities.Remove(cities.Length - 1, 1);
+
                 ViewData["cities"] = cities.ToString();
             }
 

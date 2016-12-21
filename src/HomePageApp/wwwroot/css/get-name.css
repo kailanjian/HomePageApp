@@ -1,4 +1,6 @@
-﻿#form-container {
+﻿/* style sheet for get name page */
+
+#form-container {
     width: 100%;
     position: absolute;
     top: 30%;
@@ -12,31 +14,6 @@
 
 #name-input {
     width: 40%;
-    color: white;
     height:2em;
     font-size: 3em;
-    text-align: center;
-    border: none;
-    border-bottom: 1px solid white;
-    background: transparent;
-    text-shadow: 1px 1px 1px rgba(0,0,0,1.0);
-}
-
-#name-input:focus {
-    border:none;
-    border-bottom: 1px solid white;
-    outline:none;
-}
-
-#name-submit {
-    margin-top: 1em;
-    border : solid 2px #ffffff;
-    border-radius : 3px;
-    -webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-    -moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-    box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-    font-size : 20px;
-    color : #ffffff;
-    padding : 1px 10px;
-    background-color : transparent;
 }

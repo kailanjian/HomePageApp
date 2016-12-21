@@ -15,7 +15,9 @@ namespace BingImageAPI
     public class BingImageClient
     {
         // URL to get data from
-        public readonly string ApiUrl = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US";
+        public readonly string ApiUrl = 
+            "http://www.bing.com/HPImageArchive.aspx"
+            +"?format=js&idx=0&n=1&mkt=en-US";
 
         public BingImageClient()
         {
@@ -41,7 +43,8 @@ namespace BingImageAPI
             }
 
             // Deserialize and return
-            ImageResponse ir = JsonConvert.DeserializeObject<ImageResponse>(json);
+            ImageResponse ir = 
+                JsonConvert.DeserializeObject<ImageResponse>(json);
 
             return ir;
         }

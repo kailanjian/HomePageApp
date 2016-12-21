@@ -3,27 +3,89 @@
 }
 
 @section BodyProperties{
-    onload="updateClock(); setInterval('updateClock()',1000); updateGreeting('@ViewData["Name"]'); setInterval('updateGreeting()',3600000);"
+    onload="updateClock(); setInterval('updateClock()',1000); 
+    updateGreeting('@ViewData["Name"]'); 
+    setInterval('updateGreeting()',3600000);"
 }
 
-<div id="middle" class="text">
-    
-    <!-- This element must have content (currently just a space) to render 
-        properly-->
-    <p id="clock"> </p>
+<script>
+    const TEMP_F_STRING = "@ViewData["TemperatureF"]°F";
+    const TEMP_C_STRING = "@ViewData["TemperatureC"]°C";
+</script>
 
-    <h1 id ="welcome" class="title"> </h1>
-    <br />
+<!--Make other panels here, will become visible when user wants to view-->
+<div id="settings-widget-wrapper">
+    <div id="settings-widget" hidden>
+        <h1 id="settings-header" class="title">Settings</h1>
+        <ul id="settings-list">
+            <li id="temperature-setting">
+                <div>
+                    <span class="setting-name">Temperature Units</span>
+                    <!--<input name="farenheit" type="radio" /><label for="farenheit">Celsius</label>
+                    <label>Farenheit<input type="radio" /></label>
+
+                    <input type="radio" name="celsius" id="celsius-option" 
+                           class="settings-button" value="celsius"/>
+                    <label class="settings-label" for="celsius">
+                            
+                    </label>-->
+
+                    <span class="setting-option">
+                        <input id="farenheit-radio" class="labeled-hidden-radio" type="radio" name="temperature" value="farenheit" checked />
+                        <label for="farenheit-radio" class="clickable-label">Farenheit</label>
+                        
+                        <input id="celsius-radio" type="radio" class="labeled-hidden-radio setting-input" name="temperature" value="celsius" />
+                        <label class="clickable-label" for="celsius-radio">Celsius</label>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div id="middle">
+    <div id="clock-widget" class="heading">
+        <!-- This element must have content (currently just a space) to render 
+            properly-->
+        <p id="clock"> </p>
+
+        <h1 id ="welcome" class="title"> </h1>
+        <br />
+    </div>
+
+
 
 </div>
 
-<div id="top-right" class="text">
+<div id="top-right" class="heading">
     <i id="weather-icon" class="wi @ViewData["WeatherIconName"]"></i>
-    <span id="temperature">@ViewData["TemperatureF"]° F</span>
+
+    <!--To be loaded via DOM-->
+    <span id="temperature">--</span>
+</div>
+
+<div id="top-left" class="heading">
+    <!--Code for the search bar widget-->
+    <div id="search-widget-container">
+        <form asp-action=Search asp-controller="Widgets">
+            <div id="search-widget">
+                <i id="search-widget-icon" class="glyphicon glyphicon-search"></i>
+                <input size="10" type="text" 
+                       id="search-widget-input" name="query" />
+                <input type="submit" value="Submit" hidden="hidden" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="bottom-left" class="heading">
+    <i id="settings-widget-icon" onclick="settingWidgetClick()" class="glyphicon glyphicon-cog"></i>
 </div>
 <!--<div class="text">
     <i style="font-size: xx-large;" class="glyphicon glyphicon-calendar"></i>
     <h2>Today is @ViewData["Date"] </h2>
     <br />
 </div>-->
-<!-- how to do a link<a asp-area="" asp-controller="Home" asp-action="About">About Us</a>-->
+<!-- how to do a link<a asp-area="" asp-controller="Home" asp-action="About">
+    About Us</a>-->

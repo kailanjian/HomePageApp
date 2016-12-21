@@ -1,4 +1,6 @@
-﻿#form-container {
+﻿/* stylesheet for location page */
+
+#form-container {
     width: 100%;
     position: absolute;
     top: 30%;
@@ -12,57 +14,16 @@
 
 #location-input {
     width: 40%;
-    color: white;
-    height:2em;
+    height: 2em;
     font-size: 3em;
-    text-align: center;
-    border: none;
-    border-bottom: 1px solid white;
-    background: transparent;
-    text-shadow: 1px 1px 1px rgba(0,0,0,1.0);
 }
 
-#location-input:focus {
-    border:none;
-    border-bottom: 1px solid white;
-    outline:none;
-}
-
-#location-submit {
-    margin-top: 1em;
-    border : solid 2px #ffffff;
-    border-radius : 3px;
-    -webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-    -moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-    box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-    font-size : 20px;
-    color : #ffffff;
-    padding : 1px 10px;
-    background-color : transparent;
-}
 
 .city-radio-button-label {
     font-size: 2em;
-    color: white;
-}
-
-input[type=radio] {
-    display: none;
-}
-input[type=radio] + label::before {
-    content: '';
-    display: inline-block;
-    border: 2px solid white;
-    border-radius: 50%;
-    margin: 0 0.5em;
-    box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
-}
-input[type=radio]:checked + label::before {
-    background-color: #000000;
 }
 
 .city-radio-button + label::before {
     width: 0.7em;
     height: 0.7em;
 }
-

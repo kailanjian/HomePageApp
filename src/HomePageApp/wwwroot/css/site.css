@@ -1,4 +1,6 @@
-﻿html {
+﻿/* site wide stylesheet */
+
+html {
     /* set height so body can also be set*/
     height: 100%;
 }
@@ -47,9 +49,9 @@ body {
 /* create the text block */
 .text {
     /*background-color: rgba(0, 0, 0, 0.5);*/
-    text-align: center;
+    /*text-align: center;
     color: white;
-    font-size: large;
+    font-size: large; */
 }
 
 #clock {
@@ -69,8 +71,20 @@ body {
 
 #top-right {
     position: absolute;
-    top:3%;
-    right: 3%;
+    top: 1em;
+    right: 1em;
+}
+
+#top-left {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+}
+
+#bottom-left {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
 }
 
 #weather-icon {
@@ -81,4 +95,68 @@ body {
     font-size: 2em;
 }
 
-#
+
+#search-widget-icon {
+    padding-right: 0.5em;
+    font-size: 1em;
+}
+#search-widget-input {
+    text-align: left;
+    font-size: 1em;
+    opacity: 0;
+}
+
+#search-widget-input:focus {
+    opacity: 1 !important;
+}
+
+#search-widget {
+    text-align: left;
+}
+
+#search-widget-container {
+
+}
+
+#settings-widget-wrapper{
+    position:absolute;
+    left:50%;
+    top: 5%;
+    width:70%;
+    height: 100%;
+}
+
+#settings-widget {
+    background-color: rgba(0, 0, 0, 0.7);
+    position:relative;
+    left: -50%;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5%;
+    padding-left: 20%;
+    padding-right: 20%;
+    min-height: 90%;
+    text-align:center;
+}
+
+#settings-list {
+    list-style-type: none; 
+    text-align: left;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.setting-name {
+    display: inline-block;
+    width: 30%
+}
+
+.setting-option {
+    display: inline-block;
+    float: right;
+}
+
+.labeled-hidden-radio {
+    display: none;
+}
