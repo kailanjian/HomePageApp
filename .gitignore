@@ -1,3 +1,6 @@
+## output file from nohup
+nohup.out
+
 ## Ignore API Keys
 Resource.resx
 Resource.Designer.cs
