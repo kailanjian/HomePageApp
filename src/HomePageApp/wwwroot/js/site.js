@@ -1,6 +1,6 @@
 ﻿/* site wide javascript */
 
-const TEMP_UNIT_COOKIE_NAME = "temperature_unit"
+const TEMP_UNIT_COOKIE_NAME = "temperature_unit";
 
 /* 
  * initialize things and set handlers for events
