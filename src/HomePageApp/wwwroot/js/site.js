@@ -2,6 +2,11 @@
 
 const TEMP_UNIT_COOKIE_NAME = "temperature_unit"
 
+
+// Hours which describe the begginning of afternoon and evening
+const EVENING_LOWER_BOUND = 18;
+const AFTERNOON_LOWER_BOUND = 12;
+
 /* 
  * initialize things and set handlers for events
  */
@@ -133,3 +138,49 @@ function settingWidgetClick ()
         settingsWidgetEnabled = false;
     }
 }
+
+
+function updateClock ( )
+{
+    var currentTime = new Date();
+
+    var currentHours = currentTime.getHours();
+    var currentMinutes = currentTime.getMinutes();
+
+    // Pad the minutes and seconds with leading zeros, if required
+    currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+
+    // Convert the hours component to 12-hour format if needed
+    currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+
+    // Convert an hours component of "0" to "12"
+    currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+
+    // Compose the string for display
+    var currentTimeString = currentHours + ":" + currentMinutes;
+
+    // Update the time display
+    document.getElementById("clock").firstChild.nodeValue 
+        = currentTimeString;
+}
+
+function updateGreeting (name)
+{
+    var currentTime = new Date();
+    var greeting = "Good Morning, ";
+    var currentHours = currentTime.getHours();
+    
+    // TODO: remove server side logic for this
+    if ( currentHours > (AFTERNOON_LOWER_BOUND) ) {
+        greeting = "Good Afternoon, ";
+    }
+    if ( currentHours > (EVENING_LOWER_BOUND)) {
+        greeting = "Good Evening, ";
+    }
+    
+    greeting += name;
+
+    document.getElementById("welcome").firstChild.nodeValue 
+        = greeting;
+}
+

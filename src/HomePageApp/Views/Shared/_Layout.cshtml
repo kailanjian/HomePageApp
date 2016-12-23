@@ -59,50 +59,6 @@
     <!-- TODO: Move to a file -->
     <script type="text/javascript">
 
-        function updateClock ( )
-        {
-            var currentTime = new Date();
-
-            var currentHours = currentTime.getHours();
-            var currentMinutes = currentTime.getMinutes();
-
-            // Pad the minutes and seconds with leading zeros, if required
-            currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
-
-            // Convert the hours component to 12-hour format if needed
-            currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
-
-            // Convert an hours component of "0" to "12"
-            currentHours = ( currentHours == 0 ) ? 12 : currentHours;
-
-            // Compose the string for display
-            var currentTimeString = currentHours + ":" + currentMinutes;
-
-            // Update the time display
-            document.getElementById("clock").firstChild.nodeValue 
-                = currentTimeString;
-        }
-
-        function updateGreeting (name)
-        {
-            var currentTime = new Date();
-            var greeting = "Good Morning, ";
-            var currentHours = currentTime.getHours();
-            
-            // TODO: remove server side logic for this
-            if ( currentHours > (@Constants.AFTERNOON_LOWER_BOUND) ) {
-                greeting = "Good Afternoon, ";
-            }
-            if ( currentHours > (@Constants.EVENING_LOWER_BOUND)) {
-                greeting = "Good Evening, ";
-            }
-            
-            greeting += name;
-
-            document.getElementById("welcome").firstChild.nodeValue 
-                = greeting;
-        }
-      
     </script>
 
     @RenderSection("HeaderItems",false)
@@ -129,7 +85,8 @@
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
         </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <!--should be site.min.js but we don't have a minified version of the js script-->
+        <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
 
     @RenderSection("scripts", required: false)
