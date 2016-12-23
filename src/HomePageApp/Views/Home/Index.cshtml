@@ -2,16 +2,22 @@
     ViewData["Title"] = "Home Page";
 }
 
-@section BodyProperties{
-    onload="updateClock(); setInterval('updateClock()',1000); 
-    updateGreeting('@ViewData["Name"]'); 
-    setInterval('updateGreeting()',3600000);"
-}
-
+@section scripts{
 <script>
     const TEMP_F_STRING = "@ViewData["TemperatureF"]°F";
     const TEMP_C_STRING = "@ViewData["TemperatureC"]°C";
+
+    $(document).ready(function () {
+        // update clock every minute
+        updateClock();
+        setInterval('updateClock()', 1000);
+
+        // update greeting every hour
+        updateGreeting('@ViewData["Name"]');
+        setInterval('updateGreeting("@ViewData["Name"]")', 3600000);
+    });
 </script>
+}
 
 <!--Make other panels here, will become visible when user wants to view-->
 <div id="settings-widget-wrapper">

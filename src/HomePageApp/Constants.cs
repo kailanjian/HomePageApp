@@ -9,9 +9,6 @@ public class Constants
 
     public const string BING_URL_BASE = "http://www.bing.com";
     
-    // Hours which describe the begginning of afternoon and evening
-    public const int EVENING_LOWER_BOUND = 18;
-    public const int AFTERNOON_LOWER_BOUND = 12;
 
     // for searching
     public const string GOOGLE_SEARCH_BASE = "https://www.google.com#q=";
